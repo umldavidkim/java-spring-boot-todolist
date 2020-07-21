@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+    <title>Form</title>
+  </head>
+  
+  
+  <body>
+
+	<div class="container mt-3">
+	
+		<h3>Post Details</h3>
+		<hr>
+		
+		<form th:action="@{/save}" th:object="${post}" method="POST">
+			<input type="hidden" th:field="*{id}"/>
+			<p class="mb-1">Description:</p>
+			<input type="text" th:field="*{description}" class="form-control mb-4 col-8"/>
+			<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="error mb-4" ></p>
+			<p class="mb-1">Priority:</p> 
+<!-- 			<input type="text" th:field="*{priority}" class="form-control mb-4 col-8"/> -->
+			<select th:field="*{priority}">
+				<option th:value="'4'" th:text="low"></option>
+				<option th:value="'3'" th:text="medium"></option>
+				<option th:value="'2'" th:text="high"></option>
+				<option th:value="'1'" th:text="CRITICAL"></option>
+			</select>
+			<br>
+			<button type="submit" class="btn btn-primary btn-lg mt-5">Save</button>		
+		
+		</form>
+		
+		<hr>
+		<a th:href="@{/}">Back to List</a>
+	
+	</div>
+    
+  </body>
+</html>

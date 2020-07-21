@@ -1,0 +1,59 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>To-do List</title>
+  </head>
+  
+  
+  <body>
+  
+    <div class="container mt-3">
+    	<h3>To-Do List</h3>
+    	<hr>
+    	
+    	<div class="mb-3">
+    		<a th:href="@{/showBlankForm}" class="btn btn-primary btn-sm">Add Post</a>
+			<a th:href="@{/}" class="btn btn-secondary btn-sm">Sort by Date</a>
+    		<a th:href="@{/sortByPriority}" class="btn btn-secondary btn-sm">Sort by Priority</a>
+    		
+    	</div>
+    	
+    	<table class="table table-bordered table-striped table-hover table-sm">
+    		<thead>
+    			<tr class="bg-warning">
+    				<th>Description</th>
+    				<th>Priority</th>
+    				<th>Action</th>
+    			</tr>
+    		</thead>
+    		
+    		<tbody>
+    			<tr th:each="post : ${posts}">
+    				<td th:text="${post.description}">
+    				<td th:text="${post.priority}">
+					<td>
+						<a th:href="@{/showUpdateForm(postId=${post.id})}" class="btn btn-info btn-sm">Update</a>
+						<a th:href="@{/delete(postId=${post.id})}" class="btn btn-danger btn-sm"
+								onclick="if (!(confirm('Are you sure you completed this task?'))) return false">
+							Delete</a>
+					</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    
+    
+    
+    
+    </div>
+
+    
+  </body>
+</html>
